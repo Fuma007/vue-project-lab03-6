@@ -7,12 +7,15 @@ const props = defineProps<{
 }>()
 
 const { user } = toRefs(props)
+
+const update = () => {
+  console.log('update clicked')
+}
 </script>
 
 <template>
-  <p>
-    {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }}
-    {{ user.address.zipcode }}
-  </p>
-  <p>{{ user.phone }}</p>
+  <p>Name: {{ user.name }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone: {{ user.phone }}</p>
+  <button @click="update">Update</button>
 </template>
