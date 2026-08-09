@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 import { type User } from '@/types'
+import { useRouter } from 'vue-router'
+import { useMessageStore } from '@/stores/message'
 
 const props = defineProps<{
   user: User
 }>()
 
 const { user } = toRefs(props)
+const router = useRouter()
+const store = useMessageStore()
 
 const update = () => {
-  console.log('update clicked')
+  store.updateMessage(`The update for "${props.user.name}" is updated`)
+  setTimeout(() => {
+    store.resetMessage()
+  }, 5000)
+  router.push({ name: 'home' })
 }
 </script>
 
